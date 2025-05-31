@@ -1,0 +1,29 @@
+name: Test GCD Script
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: チェックアウトリポジトリ
+      uses: actions/checkout@v3
+
+    - name: 必要なパッケージをインストール
+      run: sudo apt-get update && sudo apt-get install -y bash
+
+    - name: gcd.sh の実行権限を付与
+      run: chmod +x gcd.sh
+
+    - name: test_gcd.sh の実行権限を付与
+      run: chmod +x test_gcd.sh
+
+    - name: テストスクリプトを実行
+      run: ./cal_gcm_check.sh
