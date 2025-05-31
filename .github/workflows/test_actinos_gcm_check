@@ -19,11 +19,11 @@ jobs:
     - name: 必要なパッケージをインストール
       run: sudo apt-get update && sudo apt-get install -y bash
 
-    - name: gcd.sh の実行権限を付与
-      run: chmod +x gcd.sh
+    - name: test_cal_gcm.sh の実行権限を付与
+      run: chmod +x test_cal_gcm.sh
 
-    - name: test_gcd.sh の実行権限を付与
-      run: chmod +x test_gcd.sh
+    - name: test_cal_gcm_check.sh の実行権限を付与
+      run: chmod +x test_cal_gcm_check.sh
 
     - name: テストスクリプトを実行
       run: ./cal_gcm_check.sh
