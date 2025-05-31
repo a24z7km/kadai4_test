@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# 最大公約数シェルスクリプトのパス
+GCD_SCRIPT="./gcd.sh"
+
+# テスト関数
+run_test() {
+    local input1=$1
+    local input2=$2
+    local expected=$3
+
+    # 実行結果を取得
+    output=$($GCD_SCRIPT $input1 $input2 2>/dev/null)
+    exit_code=$?
+
+    # 結果を検証
+    if [ $exit_code -ne 0 ]; then
+        echo "テスト失敗: $input1, $input2 -> エラー終了 (期待値: $expected)" >&2
+        exit 1
+    fi
+
+    if [ "$output" != "$expected" ]; then
+        echo "テスト失敗: $input1, $input2 -> $output (期待値: $expected)" >&2
+        exit 1
+    fi
+
+    echo "テスト成功: $input1, $input2 -> $output"
+}
+
+# エラーテスト関数
+run_error_test() {
+    local input1=$1
+    local input2=$2
+
+    # 実行結果を取得
+    $GCD_SCRIPT $input1 $input2 >/dev/null 2>&1
+    exit_code=$?
+
+    # 結果を検証
+    if [ $exit_code -eq 0 ]; then
+        echo "テスト失敗: $input1, $input2 -> 正常終了 (期待値: エラー終了)" >&2
+        exit 1
+    fi
+
+    echo "テスト成功: $input1, $input2 -> エラー終了"
+}
+
+# 正常系テスト
+run_test 12 18 6
+run_test 100 25 25
+run_test 7 13 1
+run_test 48 180 12
+
+# 異常系テスト
+run_error_test 0 18
+run_error_test -5 10
+run_error_test 12.5 18
+run_error_test abc 18
+run_error_test 12 xyz
+run_error_test 12
+run_error_test
