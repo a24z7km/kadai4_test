@@ -16,9 +16,6 @@ jobs:
     - name: チェックアウトリポジトリ
       uses: actions/checkout@v3
 
-    - name: 必要なパッケージをインストール
-      run: sudo apt-get update && sudo apt-get install -y bash
-
     - name: test_cal_gcm.sh の実行権限を付与
       run: chmod +x test_cal_gcm.sh
 
@@ -26,4 +23,4 @@ jobs:
       run: chmod +x test_cal_gcm_check.sh
 
     - name: テストスクリプトを実行
-      run: ./cal_gcm_check.sh
+      run: ./test_cal_gcm_check.sh
