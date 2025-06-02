@@ -13,14 +13,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: チェックアウトリポジトリ
-      uses: actions/checkout@v3
-
-    - name: test_cal_gcm.sh の実行権限を付与
-      run: chmod +x test_cal_gcn.sh
-
-    - name: test_cal_gcm_check.sh の実行権限を付与
-      run: chmod +x test_cal_gcm_check.sh
-
     - name: テストスクリプトを実行
       run: ./test_cal_gcm_check.sh
