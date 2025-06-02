@@ -13,5 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: テストスクリプトを実行
-      run: ../test_cal_gcm_check
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v3
+
+      - name: ファイルの確認
+        run: ls -l ./kadai4_test  # 'kadai4_test' ディレクトリ内のファイルを確認
+
+      - name: テストスクリプトを実行
+        run: ./kadai4_test/test_cal_gcm_check  # 正しいファイルパスを指定
+
