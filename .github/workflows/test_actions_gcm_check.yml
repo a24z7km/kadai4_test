@@ -14,4 +14,4 @@ jobs:
 
     steps:
     - name: テストスクリプトを実行
-      run: ./test_cal_gcm_check
+      run: ../test_cal_gcm_check
