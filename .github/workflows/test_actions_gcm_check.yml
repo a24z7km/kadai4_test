@@ -1,20 +1,16 @@
 # .github/workflows/test_actions_gcm_check.yml
 name: Test GCD Script
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - run: ls -l
-
-      - run: ./test_cal_gcm_check
-        shell: bash
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Permission
+        run: chmod +x test_cal_gcn test_cal_gcm_check
+      - name: Test run
+        run: ./test_cal_gcm_check
